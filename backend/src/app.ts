@@ -1,17 +1,20 @@
 import express from "express";
 import cors from "cors";
 
+import apiRouter from "./routers/apiRouter.js";
+import authRouter from "./routers/authRouter.js";
+
 const app = express();
 const PORT = process.env.PORT;
 
 app.use(cors({
-    origin: "http://localhost:5173",
-}))
+    origin: process.env.FRONTEND_DEV_URL,
+}));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.get("/", (_req, res) => {
-    res.send("Backend");
-})
-
+app.use("/", authRouter)
+app.use("/", apiRouter)
 
 app.listen(PORT,(error) => {
     if (error) throw error;
