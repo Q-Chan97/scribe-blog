@@ -1,0 +1,34 @@
+@import "../../vars.css";
+
+.navContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    background-color: var(--primary-color);
+}
+
+.navList {
+    display: flex;
+    gap: 20px;
+}
+
+.navList a, .navList li {
+    display: flex;
+    text-decoration: none;
+    list-style-type: none;
+    border-radius: 15px;
+    padding: 0.6rem;
+    align-items: center;
+}
+
+.signUpBtn {
+    background-color: var(--background-color);
+    color: var(--text-color)
+}
+
+.loginBtn {
+    border: 1px solid var(--background-color);
+    color: var(--background-color);
+    font-weight: bold;
+}
