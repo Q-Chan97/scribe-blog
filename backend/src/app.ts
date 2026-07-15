@@ -8,7 +8,7 @@ const app = express();
 const PORT = process.env.PORT;
 
 app.use(cors({
-    origin: process.env.FRONTEND_DEV_URL,
+    origin: process.env.FRONTEND_URL,
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
