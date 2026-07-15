@@ -1,8 +1,16 @@
 import { createContext, useContext, useState, useEffect, useRef, type ReactNode } from "react";
+import { jwtDecode } from "jwt-decode";
+
+interface User {
+    id: number
+    username: string
+}
 
 interface AuthContextType {
     isLoggedIn: boolean
     setIsLoggedIn: (val: boolean) => void
+    user: User | null
+    setUser: (user: User | null) => void
 }
 
 const AuthContext = createContext<AuthContextType | null>(null);
@@ -13,6 +21,7 @@ interface Props {
 
 export function AuthProvider({ children }: Props ) {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [user, setUser] = useState<User | null>(null);
     const hasFetched = useRef(false);
 
     useEffect(() => {
@@ -24,10 +33,9 @@ export function AuthProvider({ children }: Props ) {
             if (!token) return;
     
             try {
-              const res = await fetch("/api/user", {
-                headers: { Authorization: `Bearer ${token}` }
-              });
-              if (res.ok) setIsLoggedIn(true);
+              const decoded = jwtDecode<{ user: User}>(token);
+              setUser(decoded.user);
+              setIsLoggedIn(true);
             } catch {
               setIsLoggedIn(false);
             }
@@ -36,7 +44,7 @@ export function AuthProvider({ children }: Props ) {
     }, []) // Runs once on mount
 
     return (
-        <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn}}>
+        <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn, user, setUser }}>
             { children }
         </AuthContext.Provider>
     )
