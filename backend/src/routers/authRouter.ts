@@ -1,13 +1,13 @@
 import { Router } from "express";
-import { createUser } from "../controllers/authController.js";
+import { createUser, loginUser, verifyToken, logoutUser } from "../controllers/authController.js";
 import { validateUser, validateSignup } from "../utils/validation.js";
 
 const authRouter = Router();
 
-authRouter.get("/auth", (_req, res) => {
-    res.json("This is the authorization router.")
-})
+authRouter.post("/auth/sign-up", validateUser, validateSignup, createUser);
 
-authRouter.post("/auth/sign-up", validateUser, validateSignup, createUser)
+authRouter.post("/auth/login", loginUser);
+
+authRouter.post("/auth/logout", verifyToken, logoutUser);
 
 export default authRouter;
