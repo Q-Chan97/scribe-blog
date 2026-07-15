@@ -6,15 +6,24 @@ import * as queries from "../db/queries.js";
 
 export async function createUser(req: Request, res: Response, next: NextFunction) {
     try {
+
+        const { username, email, password, confirmPassword } = req.body;
+
+        if (password !== confirmPassword) {
+            res.status(400).json({ message: "Passwords do not match"})
+        }
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
         const newUser = await queries.createUser({
-            username: req.body.username, 
+            username: username, 
             password: hashedPassword, 
-            email: req.body.email
+            email: email
         });
 
-        res.status(201).json({user: newUser})
+        jwt.sign({ user: newUser }, process.env.SECRET_KEY!, { expiresIn: "3d"}, (err, token) => {
+            if (err) return res.status(500).json({ message: "Token signing failed" });
+            res.status(201).json({ token })
+        })
 
     } catch (err) {
         next(err)
