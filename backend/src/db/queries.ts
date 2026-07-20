@@ -42,11 +42,23 @@ export const newestBlogPost = async (userId: number) => {
     return post;
 }
 
-export const getUserPosts = async (userId: number) => {
+export const getUserPosts = async (userId: number, isOwner: boolean) => {
     const posts = await prisma.blogPost.findMany({
-        where: { userId },
+        where: { 
+            userId,
+            ...(!isOwner && { isPublished: true}) // Filter by published if not the owner
+        },
         orderBy: { createdAt: "desc" },
         select: { id: true, title: true, isPublished: true, userId: true }
     })
     return posts;
+}
+
+export const togglePublished = async (postId: number, isPublished: boolean) => {
+    return prisma.blogPost.update({
+        where: { id: postId },
+        data: {
+            isPublished: !isPublished,
+        }
+    });
 }
