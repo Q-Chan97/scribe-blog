@@ -41,3 +41,12 @@ export const newestBlogPost = async (userId: number) => {
     })
     return post;
 }
+
+export const getUserPosts = async (userId: number) => {
+    const posts = await prisma.blogPost.findMany({
+        where: { userId },
+        orderBy: { createdAt: "desc" },
+        select: { id: true, title: true, isPublished: true, userId: true }
+    })
+    return posts;
+}
