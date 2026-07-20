@@ -10,4 +10,6 @@ apiRouter.get("/:userId/posts/newest", verifyToken, api.getNewestPost);
 
 apiRouter.get("/:userId/posts", verifyToken, api.getUserPosts);
 
+apiRouter.patch("/:userId/posts/:postId/publish", verifyToken, api.togglePublished)
+
 export default apiRouter;
