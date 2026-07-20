@@ -42,7 +42,7 @@ export default function Main() {
                     )}
                 </>
             ) : (
-                <p>Loading...</p>
+                <p>Welcome to the app!</p>
             )}
         </section>
     )
