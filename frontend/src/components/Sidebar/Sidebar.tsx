@@ -31,6 +31,25 @@ export default function Sidebar({ userId }: SidebarProps) {
         .then(data => setPostList(data.posts))
 
     },[userId])
+
+    async function handleTogglePublished(post: Post) {
+        const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/${user.id}/posts/${post.id}/publish`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${localStorage.getItem("token")}`
+            },
+            body: JSON.stringify({ isPublished: post.isPublished })
+        });
+
+        if (res.ok) {
+            setPostList(prev => prev.map(p => 
+                p.id === post.id ? { ...p, isPublished: !p.isPublished } : p
+            ))
+        }
+    }
+
+
     return (
         <section>
             <h3>Blog Posts</h3>
@@ -42,9 +61,10 @@ export default function Sidebar({ userId }: SidebarProps) {
                         </Link>
                         <p>{post.createdAt}</p>
                         {isOwner && (
-                            <button>
+                            <button onClick={() => handleTogglePublished}>
                                 {post.isPublished ? "Unpublish" : "Publish"}
                             </button>
+
                         )}
                     </li>
                 ))}
