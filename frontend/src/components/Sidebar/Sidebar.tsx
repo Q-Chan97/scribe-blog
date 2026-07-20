@@ -61,7 +61,7 @@ export default function Sidebar({ userId }: SidebarProps) {
                         </Link>
                         <p>{post.createdAt}</p>
                         {isOwner && (
-                            <button onClick={() => handleTogglePublished}>
+                            <button onClick={() => handleTogglePublished(post)}>
                                 {post.isPublished ? "Unpublish" : "Publish"}
                             </button>
 
