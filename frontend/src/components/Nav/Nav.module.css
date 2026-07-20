@@ -12,6 +12,7 @@
     display: flex;
     align-items: center;
     gap: 2rem;
+    color: var(--background-color)
 }
 
 .navList {
@@ -19,22 +20,32 @@
     gap: 20px;
 }
 
-.navList a, .navList li {
+.navList li {
     display: flex;
     text-decoration: none;
     list-style-type: none;
     border-radius: 15px;
-    padding: 0.6rem;
     align-items: center;
+}
+
+.navList a {
+    text-decoration: none;
+    padding: 0.6rem 0.9rem;
 }
 
 .signUpBtn {
     background-color: var(--background-color);
+}
+
+.signUpBtn a {
     color: var(--text-color)
 }
 
 .loginBtn {
     border: 1px solid var(--background-color);
-    color: var(--background-color);
     font-weight: bold;
+}
+
+.loginBtn a {
+    color: var(--background-color);
 }
