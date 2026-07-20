@@ -13,6 +13,22 @@ export const createPost = async (req: Request, res: Response) => {
     }
 }
 
+export const getSinglePost = async(req: Request, res: Response) => {
+    try {
+        const postId = Number(req.params.postId);
+        const post = await queries.getBlogPost(postId);
+
+        if (!post) {
+            res.status(404).json({ message: "No post found" });
+            return;
+        } else {
+            res.json({ post })
+        }
+    } catch (err) {
+        console.error(err);
+    }
+}
+
 export const getNewestPost = async(req: Request, res: Response) => {
     try {
         const { userId } = req.params;
