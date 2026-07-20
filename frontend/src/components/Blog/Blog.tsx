@@ -13,9 +13,13 @@ export default function Blog({blog: blogProp}: BlogProps) {
 
     useEffect(() => {
         if (blogProp || !userId || !id) return; // Skip the fetch if data is passed in as props
-        fetch(`${import.meta.env.VITE_BACKEND_URL}/${userId}/posts/${id}`)
+        fetch(`${import.meta.env.VITE_BACKEND_URL}/${userId}/posts/${id}`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`
+            }
+        })
             .then(res => res.json())
-            .then(data => setBlog(data));
+            .then(data => setBlog(data.post));
     }, [userId, id]);
 
     return (
