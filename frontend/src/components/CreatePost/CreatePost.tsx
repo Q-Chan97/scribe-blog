@@ -13,8 +13,6 @@ export default function CreatePost() {
 
     const handleSubmit = async () => {
         if (!editorRef.current) return;
-        const token = localStorage.getItem("token");
-        console.log(token);
 
         const content = editorRef.current.getContent();
 
