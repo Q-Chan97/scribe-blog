@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../../AuthContext.tsx";
 
 import Blog from "../Blog/Blog.tsx";
+import Sidebar from "../Sidebar/Sidebar.tsx";
 
 export default function Main() {
     const { user } = useAuth();
@@ -24,8 +25,6 @@ export default function Main() {
                 return res.json();
             })
             .then(data => {
-                console.log("Data: ", data)
-                console.log("Post: ", data.post)
                 setNewestBlog(data.post)
             })
             .catch(err => console.error(err));
@@ -33,11 +32,17 @@ export default function Main() {
     
     return (
         <section>
-            {/* Sidebar of all blog posts */}
-            {newestBlog ? (
-                <Blog blog={newestBlog} />
+            {user ? (
+                <>
+                    <Sidebar userId={user.id} />
+                    {newestBlog ? (
+                        <Blog blog={newestBlog} />
+                    ) : (
+                        <p>No posts so far</p>
+                    )}
+                </>
             ) : (
-                <p>No posts so far</p>
+                <p>Loading...</p>
             )}
         </section>
     )
