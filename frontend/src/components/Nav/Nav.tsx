@@ -36,15 +36,16 @@ export default function Nav() {
                 {isLoggedIn
                 ? 
                     <ul className={styles.navList}>
+                        <Link to={"create"}>New Blog</Link>
                         <button onClick={handleLogOut}>Logout</button>
                     </ul>
                 : 
                     <ul className={styles.navList}>
                         <li className={styles.signUpBtn}>
-                            <Link to={"SignUp"}>Sign Up</Link>
+                            <Link to={"signUp"}>Sign Up</Link>
                         </li>
                         <li className={styles.loginBtn}>
-                            <Link to={"Login"}>Login</Link>
+                            <Link to={"login"}>Login</Link>
                         </li>
                     </ul>
                 }
