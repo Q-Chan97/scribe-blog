@@ -42,6 +42,14 @@ export const newestBlogPost = async (userId: number) => {
     return post;
 }
 
+export const getBlogPost = async (postId: number) => {
+    const post = await prisma.blogPost.findUnique({
+        where: { id: postId },
+        include: { blogComments: true }
+    });
+    return post;
+}
+
 export const getUserPosts = async (userId: number, isOwner: boolean) => {
     const posts = await prisma.blogPost.findMany({
         where: { 
