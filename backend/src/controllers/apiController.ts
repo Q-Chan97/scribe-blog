@@ -28,3 +28,13 @@ export const getNewestPost = async(req: Request, res: Response) => {
         console.error(err);
     }
 }
+
+export const getUserPosts = async (req: Request, res: Response) => {
+    try {
+        const id = Number(req.params.userId);
+        const posts = await queries.getUserPosts(id);
+        res.status(201).json({ posts });
+    } catch (err) {
+        console.error(err);
+    }
+}
