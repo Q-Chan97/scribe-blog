@@ -1,6 +1,12 @@
 :root {
-    --primary-color: #80c2e2;
-    --accent-color: ;
-    --background-color: #fbf8f3;
-    --text-color: #2a2a2a;
+    --primary-color: #44205a;
+    --primary-light: #6b3480; /* Hover states */
+    --primary-lighter: #f0e8f5; /* Backgrounds ? */
+
+    --accent-color: #d178e3; /* Highlights */
+    --alt-cta-color: #e8c97a; /* Call to Action */
+    --background-color: #faf7fc;
+
+    --text-color: #1e0f28;
+    --border-color: #e0d4ea;
 }
