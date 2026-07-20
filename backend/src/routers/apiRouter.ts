@@ -8,4 +8,6 @@ apiRouter.post("/:userId/posts/create", verifyToken, api.createPost);
 
 apiRouter.get("/:userId/posts/newest", verifyToken, api.getNewestPost);
 
+apiRouter.get("/:userId/posts", verifyToken, api.getUserPosts);
+
 export default apiRouter;
