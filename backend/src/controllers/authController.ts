@@ -47,8 +47,8 @@ export function verifyToken(req: Request, res: Response, next: NextFunction) {
     }
 
     try {
-        const decoded = jwt.verify(bearerToken, process.env.SECRET_KEY!);
-        req.user = decoded as Express.User; // Attach payload to req 
+        const decoded = jwt.verify(bearerToken, process.env.SECRET_KEY!) as { user: Express.User };
+        req.user = decoded.user; // Attach payload to req 
         next();
     } catch {
         res.status(401).json({ message: "Invalid or expired token"})
