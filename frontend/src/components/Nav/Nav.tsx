@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router";
 import styles from "./Nav.module.css";
 
+import SearchBar from "../SearchBar/SearchBar.tsx";
 import { useAuth } from "../../AuthContext.tsx";
 
 export default function Nav() {
@@ -29,9 +30,7 @@ export default function Nav() {
                     <h2>Welcome, {user?.username}</h2>
                 }
             </div>
-            <div>
-                <input type="text" placeholder="search"></input>
-            </div>
+            <SearchBar />
             <nav>
                 {isLoggedIn
                 ? 
