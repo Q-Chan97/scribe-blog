@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import Blog from "../Blog/Blog.tsx";
 import Sidebar from "../Sidebar/Sidebar.tsx";
+import ProfileCard from "../ProfileCard/ProfileCard.tsx";
 
 export default function UserPage() {
     const { userId, id } = useParams();
@@ -32,6 +33,7 @@ export default function UserPage() {
             ) : (
                 <p>User has no posts yet.</p>
             )}
+            <ProfileCard userId={Number(userId)} />
         </section>
     )
 }
