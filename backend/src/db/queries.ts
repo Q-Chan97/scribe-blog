@@ -114,6 +114,39 @@ export const followUserQuery = async (followerId: number, followingId: number, i
     }
 }
 
+export const communityInfo = async (userId: number) => {
+    const user = await prisma.user.findUnique({
+        where: { id: userId },
+        select: {
+            follower: {
+                select: {
+                    following: {
+                        select: {
+                            id: true, username: true
+                        }
+                    }
+                }
+            },
+            following: {
+                select: {
+                    follower: {
+                        select: {
+                            id: true, username: true
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    // follower relation = Follow records where this user is followerId (i.e. user is follower of...)
+    // following relation = Follow records where this user is followingID (i.e. user is following...)
+    return {
+        following: user?.follower.map(f => f.following) ?? [],
+        followers: user?.following.map(f => f.follower) ?? [],
+    }
+}
+
 // Search Bar
 
 export const searchUser = async (query: string, excludeId?: number) => {
