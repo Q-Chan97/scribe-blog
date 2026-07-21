@@ -55,6 +55,24 @@ export function verifyToken(req: Request, res: Response, next: NextFunction) {
     }
 }
 
+export function optionalAuth(req: Request, res: Response, next: NextFunction) {
+    const bearerHeader = req.headers['authorization'];
+
+    if (!bearerHeader) return next(); // Skip auth if no bearer token, continue as a guest
+
+    const bearerToken = bearerHeader.split(' ')[1];
+
+    if (!bearerToken) return next();
+
+    try {
+        const decoded = jwt.verify(bearerToken, process.env.SECRET_KEY!) as unknown as { user: Express.User };
+        req.user = decoded.user;
+    } catch (err) {
+        console.error(err);
+    }
+    next();
+}
+
 export async function loginUser(req:Request, res: Response) {
     const user = await prisma.user.findUnique({
         where: {
