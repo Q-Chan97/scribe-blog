@@ -18,7 +18,7 @@ export default function Nav() {
         if (res.ok) {
             localStorage.removeItem("token");
             setIsLoggedIn(false)
-            navigate("/"); // State change triggers re-render
+            navigate("/login");
         }
     }
 
