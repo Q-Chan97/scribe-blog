@@ -22,6 +22,9 @@ apiRouter.get("/:userId/posts", optionalAuth, api.getUserPosts);
 // User search
 apiRouter.get("/users/search",optionalAuth, api.searchUsers);
 
+// Community
+apiRouter.get("/users/community", verifyToken, api.getCommunity);
+
 // Follow/Un-follow User
 apiRouter.patch("/users/:userId/follow", verifyToken, api.followUserLogic);
 
