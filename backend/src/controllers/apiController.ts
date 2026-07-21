@@ -48,7 +48,7 @@ export const getNewestPost = async(req: Request, res: Response) => {
 export const getUserPosts = async (req: Request, res: Response) => {
     try {
         const userId = Number(req.params.userId);
-        const isOwner = req.user!.id === userId
+        const isOwner = req.user?.id === userId;
         const posts = await queries.getUserPosts(userId, isOwner);
         res.status(201).json({ posts });
     } catch (err) {
@@ -62,6 +62,16 @@ export const togglePublished = async (req: Request, res: Response) => {
         const { isPublished } = req.body;
         const post = await queries.togglePublished(postId, isPublished);
         res.status(201).json({ post })
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+export const searchUsers = async (req: Request, res: Response) => {
+    try {
+        const query = String(req.query.q);
+        const users = await queries.searchUser(query, req.user?.id);
+        res.json({ users });
     } catch (err) {
         console.error(err);
     }
