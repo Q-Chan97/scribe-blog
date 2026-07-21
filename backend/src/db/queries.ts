@@ -70,3 +70,26 @@ export const togglePublished = async (postId: number, isPublished: boolean) => {
         }
     });
 }
+
+// Search Bar
+
+export const searchUser = async (query: string, excludeId?: number) => {
+    return prisma.user.findMany({
+        where: {
+            username: {
+                contains: query,
+                mode: "insensitive",
+            },
+            ...(excludeId && { // User's id is excluded if not logged in
+                NOT: {
+                    id: excludeId,
+                }
+            })
+        },
+        select: {
+            id: true,
+            username: true,
+        },
+        take: 7, // Limit results to 7
+    })
+}
