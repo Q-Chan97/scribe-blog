@@ -22,4 +22,10 @@ apiRouter.get("/:userId/posts", optionalAuth, api.getUserPosts);
 // User search
 apiRouter.get("/users/search",optionalAuth, api.searchUsers);
 
+// Follow/Un-follow User
+apiRouter.patch("/users/:userId/follow", verifyToken, api.followUserLogic);
+
+// User Profile Card
+apiRouter.get("/users/:userId/profile", optionalAuth, api.getProfileInfo);
+
 export default apiRouter;
