@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { verifyToken } from "../controllers/authController.js";
+import { verifyToken, optionalAuth } from "../controllers/authController.js";
 import * as api from "../controllers/apiController.js"
 
 const apiRouter = Router();
@@ -8,15 +8,18 @@ const apiRouter = Router();
 apiRouter.post("/:userId/posts/create", verifyToken, api.createPost);
 
 // Get Newest Post
-apiRouter.get("/:userId/posts/newest", verifyToken, api.getNewestPost);
+apiRouter.get("/:userId/posts/newest", optionalAuth, api.getNewestPost);
+
+// Get Single Post
+apiRouter.get("/:userId/posts/:postId", optionalAuth, api.getSinglePost);
 
 // Toggle Published
 apiRouter.patch("/:userId/posts/:postId/publish", verifyToken, api.togglePublished);
 
-// Get Single Post
-apiRouter.get("/:userId/posts/:postId", verifyToken, api.getSinglePost);
-
 // Get All Posts
-apiRouter.get("/:userId/posts", verifyToken, api.getUserPosts);
+apiRouter.get("/:userId/posts", optionalAuth, api.getUserPosts);
+
+// User search
+apiRouter.get("/users/search",optionalAuth, api.searchUsers);
 
 export default apiRouter;
