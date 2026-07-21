@@ -5,6 +5,7 @@ import { useAuth } from "../../AuthContext.tsx";
 
 import Blog from "../Blog/Blog.tsx";
 import Sidebar from "../Sidebar/Sidebar.tsx";
+import ProfileCard from "../ProfileCard/ProfileCard.tsx";
 
 export default function Main() {
     const { user } = useAuth();
@@ -40,6 +41,7 @@ export default function Main() {
                     ) : (
                         <p>No posts so far</p>
                     )}
+                    <ProfileCard userId={user.id} />
                 </>
             ) : (
                 <p>Welcome to the app!</p>
