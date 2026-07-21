@@ -25,7 +25,9 @@ export default function Nav() {
     return (
         <header className={styles.navContainer}>
             <div className={styles.welcomeContainer}>
-                <h1>Scribe</h1>
+                <h1>
+                    <Link to={"/"}>Scribe</Link>
+                </h1>
                 {isLoggedIn &&
                     <h2>Welcome, {user?.username}</h2>
                 }
@@ -35,6 +37,7 @@ export default function Nav() {
                 {isLoggedIn
                 ? 
                     <ul className={styles.navList}>
+                        <Link to={"/"}>Home</Link>
                         <Link to={"create"}>New Blog</Link>
                         <button onClick={handleLogOut}>Logout</button>
                     </ul>
