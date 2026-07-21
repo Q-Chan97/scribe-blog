@@ -76,3 +76,26 @@ export const searchUsers = async (req: Request, res: Response) => {
         console.error(err);
     }
 }
+
+export const getProfileInfo = async (req: Request, res: Response) => {
+    try {
+        const userId = Number(req.params.userId);
+        const user = await queries.profileInfo(userId, req.user?.id);
+        res.json(user);
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+export const followUserLogic = async (req: Request, res: Response) => {
+    try {
+        const followingId = Number(req.params.userId);
+        const followerId = req.user!.id;
+        const { isFollowed } = req.body;
+
+        const result = await queries.followUserQuery(followerId, followingId, isFollowed);
+        res.status(201).json({ result });
+    } catch (err) {
+        console.error(err);
+    }
+}
