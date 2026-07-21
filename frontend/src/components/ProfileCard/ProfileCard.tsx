@@ -57,13 +57,19 @@ export default function ProfileCard({ userId }: ProfileCardProps) {
         <article>
             {isOwner ? (
                 <div>
-                    <p>{profile.username}</p>
+                    <div>
+                        <p>{profile.username}</p>
+                        <p>ID: #{profile.id}</p>
+                    </div>
                     <p>This is Your Profile! You have {profile.followerCount} followers</p>
                 </div>
             ) : (
                 <div>
                     <div>
-                        <p>{profile.username}</p>
+                        <div>
+                            <p>{profile.username}</p>
+                            <p>ID: #{profile.id}</p>
+                        </div>
                         <p>Followers: {profile.followerCount}</p>
                     </div>
                 {isLoggedIn && (
