@@ -4,6 +4,7 @@ import Login from "./components/Login/Login.tsx";
 import Main from "./components/Main/Main.tsx";
 import CreatePost from "./components/CreatePost/CreatePost.tsx";
 import UserPage from "./components/UserPage/UserPage.tsx";
+import Community from "./components/Community/Community.tsx";
 
 import ForwardAuthenticated from "./Redirect/forwardAuth.tsx";
 
@@ -13,9 +14,9 @@ const routes = [
         element: <App />,
         children: [
             { index: true, element: <Main /> },
+            { path: "community", element: <Community /> },
             { path: "create", element: <CreatePost />},
-            {
-                path: ":userId",
+            { path: ":userId",
                 children: [
                     { index: true, element: <UserPage /> },
                     { path: "posts/newest", element: <UserPage /> },
