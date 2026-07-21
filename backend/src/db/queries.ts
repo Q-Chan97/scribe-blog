@@ -71,6 +71,49 @@ export const togglePublished = async (postId: number, isPublished: boolean) => {
     });
 }
 
+// Profile Card
+export const profileInfo = async (userId: number, requesterId?: number) => {
+    const user = await prisma.user.findUnique({
+        where: { id: userId },
+        select: {
+            id: true,
+            username: true,
+            _count: {
+                select: { following: true }
+            },
+            ...(requesterId && {
+                following: {
+                    where: {
+                        followerId: requesterId
+                    }
+                }
+            })
+        }
+    })
+
+    if (!user) return null;
+
+    return {
+        ...user,
+        isFollowed: requesterId ? (user?.following.length > 0) : false,
+        followerCount: user?._count.following ?? 0,
+    }
+}
+
+export const followUserQuery = async (followerId: number, followingId: number, isFollowed: boolean) => {
+    if (isFollowed) {
+        return prisma.follow.delete({
+            where: {
+                followingId_followerId: { followingId, followerId}
+            }
+        });
+    } else {
+        return prisma.follow.create({
+            data: { followerId, followingId }
+        });
+    }
+}
+
 // Search Bar
 
 export const searchUser = async (query: string, excludeId?: number) => {
