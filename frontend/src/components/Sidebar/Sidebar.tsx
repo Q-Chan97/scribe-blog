@@ -28,7 +28,7 @@ export default function Sidebar({ userId }: SidebarProps) {
             }
         })
         .then(res => res.json())
-        .then(data => setPostList(data.posts))
+        .then(data => setPostList(data.posts ?? []))
 
     },[userId])
 
@@ -48,7 +48,6 @@ export default function Sidebar({ userId }: SidebarProps) {
             ))
         }
     }
-
 
     return (
         <section>
