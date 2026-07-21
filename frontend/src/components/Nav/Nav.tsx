@@ -39,6 +39,7 @@ export default function Nav() {
                     <ul className={styles.navList}>
                         <Link to={"/"}>Home</Link>
                         <Link to={"create"}>New Blog</Link>
+                        <Link to={"community"}>Community</Link>
                         <button onClick={handleLogOut}>Logout</button>
                     </ul>
                 : 
