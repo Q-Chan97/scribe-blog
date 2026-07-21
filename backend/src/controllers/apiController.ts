@@ -91,11 +91,26 @@ export const followUserLogic = async (req: Request, res: Response) => {
     try {
         const followingId = Number(req.params.userId);
         const followerId = req.user!.id;
+
+        if (followerId === followingId) {
+            res.status(400).json({ message: "Cannot follow yourself" })
+            return;
+        }
+
         const { isFollowed } = req.body;
 
         const result = await queries.followUserQuery(followerId, followingId, isFollowed);
         res.status(201).json({ result });
     } catch (err) {
         console.error(err);
+    }
+}
+
+export const getCommunity = async (req: Request, res: Response) => {
+    try {
+        const community = await queries.communityInfo(req.user!.id);
+        res.json(community);
+    } catch (err) {
+        console.error(err)
     }
 }
