@@ -52,7 +52,10 @@ export default function SearchBar() {
                 <ul>
                     {results.map((user) => (
                         <li key={user.id} onClick={() => handleSelect(user)}>
-                            {user.username}
+                            <div>
+                                <p>{user.username}</p>
+                                <p>#{user.id}</p>
+                            </div>
                         </li>
                     ))}
                 </ul>
