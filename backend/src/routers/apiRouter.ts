@@ -7,6 +7,9 @@ const apiRouter = Router();
 // Create Post
 apiRouter.post("/:userId/posts/create", verifyToken, api.createPost);
 
+// Delete Post
+apiRouter.delete("/:userId/posts/:postId/delete", verifyToken, api.deletePost);
+
 // Get Newest Post
 apiRouter.get("/:userId/posts/newest", optionalAuth, api.getNewestPost);
 
