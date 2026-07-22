@@ -13,6 +13,29 @@ export const createPost = async (req: Request, res: Response) => {
     }
 }
 
+export const deletePost = async (req: Request, res: Response) => {
+    try {
+        const postId = Number(req.params.postId);
+        const post = await queries.getBlogPost(postId);
+
+        if (!post) {
+            res.status(404).json({ message: "Post not found" });
+            return;
+        }
+
+        if (post.userId !== req.user!.id) {
+            res.status(500).json({ message: "Unauthorized" });
+            return;
+        }
+
+        await queries.deleteBlogPost(postId);
+
+        res.status(200).json({ message: "Post Deleted" })
+    } catch (err) {
+        console.error(err);
+    }
+}
+
 export const getSinglePost = async(req: Request, res: Response) => {
     try {
         const postId = Number(req.params.postId);
