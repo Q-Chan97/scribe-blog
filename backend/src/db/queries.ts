@@ -33,6 +33,14 @@ export const createBlogPost = async (title: string, content: string, authorId: n
     return post;
 }
 
+export const deleteBlogPost = async (postId: number) => {
+    return await prisma.blogPost.delete({
+        where: {
+            id: postId,
+        }
+    })
+}
+
 export const newestBlogPost = async (userId: number) => {
     const post = await prisma.blogPost.findFirst({
         where: { userId},
