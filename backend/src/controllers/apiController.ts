@@ -147,3 +147,26 @@ export const getCommunity = async (req: Request, res: Response) => {
 }
 
 // Comments
+
+export const getComments = async (req: Request, res: Response) => {
+    try {
+        const postId = Number(req.params.postId);
+        const comments = await queries.getBlogComments(postId);
+        res.json({ comments });
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+export const postComment = async (req: Request, res: Response) => {
+    try {
+        const { commentText } = req.body;
+        const postId = Number(req.params.postId);
+
+        const comment = await queries.postBlogComment(postId, commentText, req.user!.id)
+
+        res.status(201).json({ comment });
+    } catch (err) {
+        console.error(err);
+    }
+}
