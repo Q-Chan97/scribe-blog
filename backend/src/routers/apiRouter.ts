@@ -16,6 +16,12 @@ apiRouter.get("/:userId/posts/newest", optionalAuth, api.getNewestPost);
 // Get Single Post
 apiRouter.get("/:userId/posts/:postId", optionalAuth, api.getSinglePost);
 
+// Post Comment
+apiRouter.post("/:userId/posts/:postId/comments", verifyToken, api.postComment);
+
+// Get Comments
+apiRouter.get("/:userId/posts/:postId/comments", optionalAuth, api.getComments);
+
 // Toggle Published
 apiRouter.patch("/:userId/posts/:postId/publish", verifyToken, api.togglePublished);
 
