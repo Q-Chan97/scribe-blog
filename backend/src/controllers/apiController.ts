@@ -2,6 +2,8 @@ import * as queries from "../db/queries.js"
 
 import { type Request, type Response } from "express"
 
+// Posts
+
 export const createPost = async (req: Request, res: Response) => {
 
     try {
@@ -79,6 +81,8 @@ export const getUserPosts = async (req: Request, res: Response) => {
     }
 }
 
+// Publish/Un-Publish Post
+
 export const togglePublished = async (req: Request, res: Response) => {
     try {
         const postId = Number(req.params.postId);
@@ -90,6 +94,8 @@ export const togglePublished = async (req: Request, res: Response) => {
     }
 }
 
+// Search
+
 export const searchUsers = async (req: Request, res: Response) => {
     try {
         const query = String(req.query.q);
@@ -99,6 +105,8 @@ export const searchUsers = async (req: Request, res: Response) => {
         console.error(err);
     }
 }
+
+// Profile Card
 
 export const getProfileInfo = async (req: Request, res: Response) => {
     try {
@@ -137,3 +145,5 @@ export const getCommunity = async (req: Request, res: Response) => {
         console.error(err)
     }
 }
+
+// Comments
