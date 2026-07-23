@@ -79,6 +79,51 @@ export const togglePublished = async (postId: number, isPublished: boolean) => {
     });
 }
 
+// Comments
+export const postBlogComment = async (postId: number, commentText: string, userId: number) => {
+    const comment = await prisma.comment.create({
+        data: {
+            commentText: commentText,
+            userId: userId,
+            blogPostId: postId
+        }
+    })
+    return comment;
+}
+
+export const getBlogComments = async (postId: number) => {
+    return await prisma.comment.findMany({
+        where: {
+            blogPostId: postId
+        },
+        orderBy: {
+            createdAt: "desc"
+        },
+        select: {
+            id: true, 
+            createdAt: true, 
+            commentText: true, 
+            user: {
+                select: {
+                    username: true
+                }
+            },
+            childComments: {
+                select: {
+                    id: true,
+                    commentText: true,
+                    createdAt: true,
+                    user: {
+                        select: {
+                            username: true
+                        }
+                    }
+                }
+            }
+        }
+    })
+}
+
 // Profile Card
 export const profileInfo = async (userId: number, requesterId?: number) => {
     const user = await prisma.user.findUnique({
