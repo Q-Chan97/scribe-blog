@@ -29,7 +29,7 @@ export default function UserPage() {
         <section>
             <Sidebar userId={Number(userId)} />
             {activeBlog ? (
-                <Blog blog={activeBlog} />
+                <Blog blog={activeBlog} userId={Number(userId)} />
             ) : (
                 <p>User has no posts yet.</p>
             )}

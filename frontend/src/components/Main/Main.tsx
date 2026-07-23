@@ -37,7 +37,7 @@ export default function Main() {
                 <>
                     <Sidebar userId={user.id} />
                     {newestBlog ? (
-                        <Blog blog={newestBlog} />
+                        <Blog blog={newestBlog} userId={user.id} />
                     ) : (
                         <p>No posts so far</p>
                     )}
