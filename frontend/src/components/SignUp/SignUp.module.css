@@ -1,0 +1,65 @@
+@import "../../vars.css";
+
+main {
+    display: flex;
+    height: 100vh;
+}
+
+.mainContainer {
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    width: 500px;
+    padding: 1rem;
+    gap: 20px;
+    background-color: var(--color-surface);
+    border-left: 36px solid transparent;
+    border-image: linear-gradient(to bottom, #e35576 0% 25%, #e8c97a 25% 50%, #63b4d6 50% 75%, #976a32 75% 100%) 1;
+    box-shadow: -20px 20px 0px var(--color-bg-warm);
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form label {
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.inputContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.buttonContainer {
+    display: flex;
+    align-self: center;
+    gap: 20px;
+}
+
+.returnBtn {
+    display: flex;
+    align-items: center;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-amber);
+    padding: 0.4rem 1rem;
+    border-radius: 15px;
+    text-decoration: none;
+    color: var(--color-text);
+}
+
+.submitBtn {
+    background-color: var(--color-sage);
+    padding: 0.4rem 1rem;
+    border-radius: 15px;
+    border: none;
+}
+
+.submitBtn:hover {
+    cursor: pointer;
+}

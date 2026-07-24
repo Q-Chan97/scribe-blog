@@ -1,5 +1,5 @@
 import "../../App.css";
-import "../../vars.css";
+import styles from "./SignUp.module.css";
 
 import { useState, type SubmitEvent } from "react";
 import { Link, useNavigate } from "react-router";
@@ -55,36 +55,34 @@ export default function SignUp() {
 
     return (
         <main>
-            <form onSubmit={handleSignUp}>
-                <div>
-                    <label htmlFor="username">Username: </label>
-                    <input type="text" name="username" id="username"></input>
-                </div>
-
-                <div>
-                    <label htmlFor="email">Email: </label>
-                    <input type="email" name="email" id="email"></input>
-                </div>
-
-                <div>
-                    <label htmlFor="password">Password: </label>
-                    <input type="text" name="password" id="password"></input>
-                </div>
-
-                <div>
-                    <label htmlFor="confirmPassword">Confirm Password: </label>
-                    <input type="text" name="confirmPassword" id="confirmPassword"></input>
-                </div>
-
-                {error && <p>{error}</p>}
-
-                <div>
-                    <Link to={"/"}>
-                        Return
-                    </Link>
-                    <button type="submit">Sign Up</button>
-                </div>
-            </form>
+            <div className={styles.mainContainer}>
+                <h2>Sign Up</h2>
+                <form className={styles.form} onSubmit={handleSignUp}>
+                    <div className={styles.inputContainer}>
+                        <label htmlFor="username">Username: </label>
+                        <input type="text" name="username" id="username"></input>
+                    </div>
+                    <div className={styles.inputContainer}>
+                        <label htmlFor="email">Email: </label>
+                        <input type="email" name="email" id="email"></input>
+                    </div>
+                    <div className={styles.inputContainer}>
+                        <label htmlFor="password">Password: </label>
+                        <input type="text" name="password" id="password"></input>
+                    </div>
+                    <div className={styles.inputContainer}>
+                        <label htmlFor="confirmPassword">Confirm Password: </label>
+                        <input type="text" name="confirmPassword" id="confirmPassword"></input>
+                    </div>
+                    {error && <p>{error}</p>}
+                    <div className={styles.buttonContainer}>
+                        <Link className={styles.returnBtn} to={"/"}>
+                            <p>Return</p>
+                        </Link>
+                        <button className={styles.submitBtn} type="submit">Sign Up</button>
+                    </div>
+                </form>
+            </div>
         </main>
     )
 }
