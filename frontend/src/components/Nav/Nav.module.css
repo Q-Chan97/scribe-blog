@@ -5,19 +5,43 @@
     justify-content: space-between;
     align-items: center;
     padding: 20px 30px;
-    background-color: var(--primary-color);
+    background-color: var(--color-bg);
+    border-left: 50px solid transparent;
+    border-image: linear-gradient(to bottom, #e35576 0% 25%, #e8c97a 25% 50%, #63b4d6 50% 75%, #976a32 75% 100%) 1;
+    border-bottom: 3px solid var(--color-amber);
 }
 
 .welcomeContainer {
     display: flex;
     align-items: center;
     gap: 2rem;
-    color: var(--background-color)
+    margin-left: 6rem;
+    font-family: "DMSerif", Georgia, serif;
+}
+
+.titleContainer {
+    display: flex;
+    gap: 10px;
+}
+
+.title a {
+    text-decoration: none;
+    color: var(--color-text);
+}
+
+.logoContainer {
+    width: 45px;
+}
+
+.welcomeMessage {
+    margin-top: 5px;
+    color: var(--color-text-muted);
 }
 
 .navList {
     display: flex;
     gap: 20px;
+    font-family: "DMSerif", Georgia, serif;
 }
 
 .navList li {
@@ -33,19 +57,47 @@
     padding: 0.6rem 0.9rem;
 }
 
+.navItem a {
+    color: var(--color-text-muted);
+    border: 2px solid transparent;
+    font-family: "DMSerif", Georgia, serif;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+}
+
+.navItem a:hover {
+    border-bottom: 2px solid var(--color-text-muted);
+}
+
 .signUpBtn {
-    background-color: var(--background-color);
+    background-color: var(--color-gold);
 }
 
 .signUpBtn a {
-    color: var(--text-color)
+    color: var(--color-text)
 }
 
 .loginBtn {
-    border: 1px solid var(--background-color);
     font-weight: bold;
 }
 
 .loginBtn a {
-    color: var(--background-color);
+    color: var(--color-amber);
+    border: 2px solid transparent;
+}
+
+.loginBtn a:hover {
+    border-bottom: 2px solid var(--color-amber);
+}
+
+.logoutBtn {
+    border: 1px solid var(--color-amber);
+    background-color: var(--color-amber);
+    color: var(--color-bg);
+    border-radius: 15px;
+    padding: 0.5rem;
+}
+
+.logoutBtn:hover {
+    cursor: pointer;
 }
