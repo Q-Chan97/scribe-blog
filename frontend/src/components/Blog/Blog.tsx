@@ -1,3 +1,5 @@
+import styles from "./Blog.module.css";
+
 import { useState, useEffect } from "react";
 import { useAuth } from "../../AuthContext.tsx";
 
@@ -55,19 +57,21 @@ export default function Blog({ blog, userId }: BlogProps) {
     if (!blog) return null;
 
     return (
-        <section>
-            <div>
+        <section className={styles.container}>
+            <div className={styles.blogTitle}>
                 { blog?.title }
             </div>
-            <div dangerouslySetInnerHTML={{ __html: blog?.text || "" }} />
+            <div className={styles.blogText} dangerouslySetInnerHTML={{ __html: blog?.text || "" }} />
             {isLoggedIn && 
                 <div>
                     <form>
-                        <label htmlFor="comment">Post a Comment: </label>
-                        <textarea name="comment" id="comment" value={commentText} onChange={(e) => setCommentText(e.target.value)}></textarea>
-                        <div>
-                            <button type="button" onClick={() => setCommentText("")}>Clear</button>
-                            <button type="submit" onClick={() => handlePostComment()}>Post Comment</button>
+                        <div className={styles.commentArea}>
+                            <label htmlFor="comment">Post a Comment: </label>
+                            <textarea className={styles.commentText} name="comment" id="comment" value={commentText} onChange={(e) => setCommentText(e.target.value)}></textarea>
+                        </div>
+                        <div className={styles.buttonContainer}>
+                            <button className={styles.clear} type="button" onClick={() => setCommentText("")}>Clear</button>
+                            <button className={styles.postComment} type="submit" onClick={() => handlePostComment()}>Post Comment</button>
                         </div>
                     </form>
                 </div>
