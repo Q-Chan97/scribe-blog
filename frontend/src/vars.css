@@ -1,12 +1,27 @@
 :root {
-    --primary-color: #44205a;
-    --primary-light: #6b3480; /* Hover states */
-    --primary-lighter: #f0e8f5; /* Backgrounds ? */
+    /* Main */
+    --color-purple: #4a1f3f;
+    --color-purple-light: #7a3a6a;
 
-    --accent-color: #d178e3; /* Highlights */
-    --alt-cta-color: #e8c97a; /* Call to Action */
-    --background-color: #faf7fc;
+    --color-rose: #e35567;
+    --color-rose-light: #f0849d;
 
-    --text-color: #1e0f28;
-    --border-color: #e0d4ea;
+    --color-gold: #e8c97a;
+    --color-gold-dark: #c4933a;
+
+    --color-sky: #80c2e2;
+    --color-sky-dark: #3a85a8;
+
+    --color-amber: #976a32;
+    --color-amber-light: #c49a60;
+
+    --color-sage: #82d77f;
+
+    /* Neutral */
+    --color-text: #2c2416;
+    --color-text-muted: #7a6a52;
+    --color-surface: #fdfaf4;
+    --color-bg: #f7f2e8;
+    --color-bg-warm: #ece2cb;
+    --color-border: #ddd0b8;
 }
