@@ -26,7 +26,7 @@ export default function UserPage() {
     }, [userId, id]);
 
     return (
-        <section>
+        <main>
             <Sidebar userId={Number(userId)} />
             {activeBlog ? (
                 <Blog blog={activeBlog} userId={Number(userId)} />
@@ -34,6 +34,6 @@ export default function UserPage() {
                 <p>User has no posts yet.</p>
             )}
             <ProfileCard userId={Number(userId)} />
-        </section>
+        </main>
     )
 }

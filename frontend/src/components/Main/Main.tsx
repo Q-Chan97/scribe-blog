@@ -34,7 +34,7 @@ export default function Main() {
     return (
         <section>
             {user ? (
-                <>
+                <main>
                     <Sidebar userId={user.id} />
                     {newestBlog ? (
                         <Blog blog={newestBlog} userId={user.id} />
@@ -42,7 +42,7 @@ export default function Main() {
                         <p>No posts so far</p>
                     )}
                     <ProfileCard userId={user.id} />
-                </>
+                </main>
             ) : (
                 <p>Welcome to the app!</p>
             )}
