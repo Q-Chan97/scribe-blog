@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useNavigate } from "react-router"
+import styles from "./SearchBar.module.css"
 
 interface User {
     id: number
@@ -41,24 +42,27 @@ export default function SearchBar() {
     }
 
     return (
-        <div>
+        <div className={styles.searchContainer}>
             <input 
+                className={styles.searchBar}
                 type="text"
                 placeholder="Search users..."
                 value={query}
                 onChange={handleSearch} 
             />
             {results.length > 0 && (
-                <ul>
+                <div>
+                    <ul className={styles.resultsList}>
                     {results.map((user) => (
-                        <li key={user.id} onClick={() => handleSelect(user)}>
-                            <div>
+                        <li key={user.id} className={styles.resultContainer} onClick={() => handleSelect(user)}>
+                            <div className={styles.result}>
                                 <p>{user.username}</p>
-                                <p>#{user.id}</p>
+                                <p className={styles.resultId}>ID: #{user.id}</p>
                             </div>
                         </li>
                     ))}
-                </ul>
+                    </ul>
+                </div>
             )}
         </div>
     )

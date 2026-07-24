@@ -1,0 +1,53 @@
+@import "../../vars.css";
+
+.searchContainer {
+    position: relative;
+    display: inline-block;
+}
+
+.searchBar {
+    width: 400px;
+    border: none;
+    border-radius: 15px;
+    padding: 0.5rem 1rem;
+    box-shadow: 0px 0px 5px;
+}
+
+.title {
+    font-weight: bolder;
+    margin-top: 10px;
+}
+
+.resultsList {
+    position: absolute;
+    z-index: 1;
+    width: 400px;
+    margin-top: 5px;
+    border: 1px solid var(--color-border);
+}
+
+.resultContainer {
+    list-style-type: none;
+    background-color: white;
+    width: 100%;
+    padding: 5px;
+    border-bottom: 1px solid var(--color-text-muted);
+}
+
+.result {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--color-text);
+    font-size: 1.3rem;
+    border-radius: 15px;
+}
+
+.result:hover {
+    cursor: pointer
+}
+
+.resultId {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+}
