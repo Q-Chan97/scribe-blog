@@ -1,5 +1,5 @@
 import "../../App.css";
-import "../../vars.css";
+import styles from "./Login.module.css";
 
 import { useState, type SubmitEvent} from "react";
 import { Link, useNavigate } from "react-router";
@@ -43,26 +43,26 @@ export default function Login() {
 
     return (
         <main>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="username">Username: </label>
-                    <input type="text" name="username" id="username"></input>
-                </div>
-
-                <div>
-                    <label htmlFor="password">Password: </label>
-                    <input type="text" name="password" id="password"></input>
-                </div>
-
-                {error && <p>{error}</p>}
-
-                <div>
-                    <Link to={"/"}>
-                        <button type="button">Home</button>
-                    </Link>
-                    <button type="submit">Login</button>
-                </div>
-            </form>
+            <div className={styles.mainContainer}>
+                <h2>Login</h2>
+                <form onSubmit={handleSubmit} className={styles.form}>
+                    <div className={styles.inputContainer}>
+                        <label htmlFor="username">Username: </label>
+                        <input type="text" name="username" id="username"></input>
+                    </div>
+                    <div className={styles.inputContainer}>
+                        <label htmlFor="password">Password: </label>
+                        <input type="text" name="password" id="password"></input>
+                    </div>
+                    {error && <p>{error}</p>}
+                    <div className={styles.buttonContainer}>
+                        <Link to={"/"} className={styles.returnBtn}>
+                            <p>Home</p>
+                        </Link>
+                        <button type="submit" className={styles.submitBtn}>Login</button>
+                    </div>
+                </form>
+            </div>
         </main>
     )
 }
