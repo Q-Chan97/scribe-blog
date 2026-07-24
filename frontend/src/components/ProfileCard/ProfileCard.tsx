@@ -1,3 +1,5 @@
+import styles from "./ProfileCard.module.css";
+
 import { useEffect, useState } from "react";
 import { useAuth } from "../../AuthContext.tsx";
 
@@ -56,24 +58,24 @@ export default function ProfileCard({ userId }: ProfileCardProps) {
     return (
         <article>
             {isOwner ? (
-                <div>
-                    <div>
-                        <p>{profile.username}</p>
-                        <p>ID: #{profile.id}</p>
+                <div className={styles.container}>
+                    <div className={styles.username}>
+                        <p className={styles.name}>{profile.username}</p>
+                        <p className={styles.id}>ID: #{profile.id}</p>
                     </div>
-                    <p>This is Your Profile! You have {profile.followerCount} followers</p>
+                    <p className={styles.followers}>This is Your Profile! You have {profile.followerCount} followers</p>
                 </div>
             ) : (
-                <div>
+                <div className={styles.container}>
                     <div>
-                        <div>
-                            <p>{profile.username}</p>
-                            <p>ID: #{profile.id}</p>
+                        <div className={styles.username}>
+                            <p className={styles.name}>{profile.username}</p>
+                            <p className={styles.id}>ID: #{profile.id}</p>
                         </div>
-                        <p>Followers: {profile.followerCount}</p>
+                        <p className={styles.followers}>Followers: {profile.followerCount}</p>
                     </div>
                 {isLoggedIn && (
-                    <button onClick={() => handleFollowProfile()}>
+                    <button onClick={() => handleFollowProfile()} className={isFollowed ? styles.unfollow : styles.follow}>
                         {isFollowed ? "Unfollow" : "Follow"}
                     </button>
                 )}

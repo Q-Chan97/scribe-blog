@@ -1,0 +1,53 @@
+.container {
+    display: flex;
+    background-color: var(--color-bg-warm);
+    color: var(--color-text);
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border-radius: 20px;
+    border-top: 4px solid var(--color-amber);
+    min-width: 300px;
+}
+
+.username {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.name {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.id {
+    font-size: 1.1rem;
+    color: var(--color-text-muted)
+}
+
+.followers {
+    display: flex;
+    justify-self: center;
+    margin: 0.5rem;
+}
+
+.baseButton {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 15px;
+}
+
+.baseButton:hover {
+    cursor: pointer;
+}
+
+.follow {
+    composes: baseButton;
+    background-color: var(--color-sage);
+}
+
+.unfollow {
+    composes: baseButton;
+    background-color: var(--color-rose);
+}
