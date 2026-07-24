@@ -1,3 +1,5 @@
+import styles from "./Sidebar.module.css";
+
 import { useState, useEffect } from "react"
 import { Link } from "react-router";
 import { useAuth } from "../../AuthContext.tsx";
@@ -69,37 +71,52 @@ export default function Sidebar({ userId }: SidebarProps) {
 
     return (
         <section>
-            <h3>Blog Posts</h3>
-            <ul>
-                {postList.map((post) => (
-                    <li key={post.id}>
-                        <Link to={`/${userId}/posts/${post.id}`}>
-                            {post.title}
-                        </Link>
-                        <p>{post.createdAt}</p>
-                        {isOwner && (
-                            <div>
-                                <button onClick={() => handleTogglePublished(post)}>
-                                    {post.isPublished ? "Unpublish" : "Publish"}
-                                </button>
-                                {confirmDelete === post.id ? (
-                                    <div>
-                                        <span>Do you want to delete this?</span>
-                                        <button onClick={() => setConfirmDelete(null)}>No</button>
-                                        <button onClick={() => handleDeleteBlogPost(post)}>
-                                            Delete
-                                        </button>
+            <div className={styles.container}>
+                <h3 className={styles.title}>Blog Posts</h3>
+                <div>
+                    <ul className={styles.list}>
+                        {postList.map((post) => (
+                            <>
+                                <li key={post.id} className={styles.postList}>
+                                    <div className={styles.postInfo}>
+                                        <Link to={`/${userId}/posts/${post.id}`}>
+                                            {post.title}
+                                        </Link>
+                                        <p>{new Date(post.createdAt).toLocaleDateString("en-US", {
+                                            year: "numeric",
+                                            month: "2-digit",
+                                            day: "numeric",
+                                        })}
+                                        </p>
                                     </div>
-                                ) : (
-                                    <button onClick={() => setConfirmDelete(post.id)}>
-                                        Delete
-                                    </button>
+                                    {isOwner && (
+                                    <div className={styles.buttonContainer}>
+                                        <button onClick={() => handleTogglePublished(post)} className={post.isPublished ? styles.unpublish : styles.publish}>
+                                            {post.isPublished ? "Unpublish" : "Publish"}
+                                        </button>
+                                        {confirmDelete === post.id ? (
+                                            <div>
+                                                <span>Do you want to delete this?</span>
+                                                <div className={styles.buttonContainer}>
+                                                    <button onClick={() => setConfirmDelete(null)} className={styles.unpublish}>No</button>
+                                                    <button onClick={() => handleDeleteBlogPost(post)} className={styles.deleteBtn}>
+                                                        Delete
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        ) : (
+                                            <button onClick={() => setConfirmDelete(post.id)} className={styles.deleteBtn}>
+                                                Delete
+                                            </button>
+                                        )}
+                                    </div>
                                 )}
-                            </div>
-                        )}
-                    </li>
-                ))}
-            </ul>
+                                </li>
+                            </>
+                        ))}
+                    </ul>
+                </div>
+            </div>
         </section>
     )
 }

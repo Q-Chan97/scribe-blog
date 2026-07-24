@@ -1,0 +1,83 @@
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border: 1px solid transparent;
+    border-radius: 20px;
+    background-color: var(--color-bg-warm);
+    min-width: 375px;
+}
+
+.title {
+    color: var(--color-text);
+    letter-spacing: 0.1rem;
+    font-family: "DMSerif", Georgia, serif;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.postList {
+    display: flex;
+    flex-direction: column;
+    border: 3px solid transparent;
+}
+
+.postList:hover {
+    border: 3px solid var(--color-border);
+}
+
+
+.postInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.postInfo a {
+    color: var(--color-amber);
+}
+
+.postInfo p {
+    color: var(--color-text-muted);
+    font-size: 1rem;
+}
+
+.buttonContainer {
+    display: flex;
+    align-self: center;
+    margin: 5px;
+    gap: 20px;
+}
+
+.base-button {
+    padding: 0.2rem 0.5rem;
+    border-radius: 15px;
+    color: var(--color-text);
+    border: 1px solid transparent;
+}
+
+.base-button:hover {
+    cursor: pointer;
+}
+
+.publish {
+    composes: base-button;
+    background-color: var(--color-gold);
+}
+
+.unpublish {
+    composes: base-button;
+    background-color: var(--color-bg-warm);
+    border: 1px solid var(--color-amber);
+}
+
+.deleteBtn {
+    composes: base-button;
+    background-color: var(--color-rose);
+}
