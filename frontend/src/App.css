@@ -1,5 +1,17 @@
 @import "./vars.css";
 
+@font-face {
+  font-family: "DMSans";
+  src: url(./assets/fonts/DMSans-9ptRegular.woff2) format(woff2),
+  url(./assets/fonts//DMSans-9ptRegular.woff) format(woff);
+}
+
+@font-face {
+  font-family: "DMSerif";
+  src: url(./assets/fonts/DMSerifDisplay-Regular.woff2) format(woff2),
+  url(./assets/fonts/DMSerifDisplay-Regular.woff) format(woff);
+}
+
 /* Reset */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -16,10 +28,10 @@ html {
 
 body {
   font-size: 18px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "DMSans", Arial, sans-serif;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  background-color: var(--background-color);
+  background-color: var(--color-bg);
 }
 
 img, picture, video, canvas, svg {
@@ -34,7 +46,7 @@ input, button, textarea, select {
 
 p, h1, h2, h3, h4, h5, h6 {
   overflow-wrap: break-word;
-  color: var(--text-color);
+  color: var(--color-text);
 }
 
 #root, #__next {
