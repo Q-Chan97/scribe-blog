@@ -6,6 +6,8 @@
     color: var(--color-text);
     border-top: 10px solid transparent;
     padding: 20px;
+    min-height: fit-content;
+    max-width: 900px;
     border-image: linear-gradient(to right, #e35576 0% 25%, #e8c97a 25% 50%, #63b4d6 50% 75%, #976a32 75% 100%) 1;
 }
 
@@ -29,6 +31,7 @@
 .commentText {
     height: 200px;
     width: 500px;
+    max-width: 900px;
 }
 
 .buttonContainer {
