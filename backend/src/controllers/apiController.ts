@@ -160,10 +160,10 @@ export const getComments = async (req: Request, res: Response) => {
 
 export const postComment = async (req: Request, res: Response) => {
     try {
-        const { commentText } = req.body;
+        const { commentText, parentId } = req.body;
         const postId = Number(req.params.postId);
 
-        const comment = await queries.postBlogComment(postId, commentText, req.user!.id)
+        const comment = await queries.postBlogComment(postId, commentText, req.user!.id, parentId)
 
         res.status(201).json({ comment });
     } catch (err) {
