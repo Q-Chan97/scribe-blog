@@ -2,20 +2,13 @@ import styles from "./Blog.module.css";
 
 import { useState, useEffect } from "react";
 import { useAuth } from "../../AuthContext.tsx";
+import { type RawComment } from "../../types.ts";
 
 import Comment from "../Comment/Comment.tsx"
 
 interface BlogProps {
     blog?: any
     userId: number
-}
-
-interface Comment {
-    id: number
-    user: { username: string }
-    commentText: string
-    createdAt: Date
-    childComments: Comment[]
 }
 
 export default function Blog({ blog, userId }: BlogProps) {
@@ -38,6 +31,8 @@ export default function Blog({ blog, userId }: BlogProps) {
     }, [blog?.id, userId])
     
     async function handlePostComment() {
+        if (!commentText || commentText === "") return; 
+
         const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/${userId}/posts/${blog.id}/comments`, {
             method: "POST",
             headers: {
@@ -52,6 +47,14 @@ export default function Blog({ blog, userId }: BlogProps) {
             setBlogComments(prev => [...prev, data.comment]);
             setCommentText("");
         }
+    }
+
+    async function handleReplyPosted(parentId: number, reply: any) {
+        setBlogComments(prev => prev.map(comment => 
+            comment.id === parentId
+                ? {...comment, childComments: [...comment.childComments, reply]}
+                : comment
+        ))
     }
 
     if (!blog) return null;
@@ -77,13 +80,23 @@ export default function Blog({ blog, userId }: BlogProps) {
                 </div>
             }
             {blogComments.length > 0 && 
-                blogComments.map((comment: Comment) => (
-                    <Comment key={comment.id} 
-                    id={comment.id}
-                    username={comment.user.username} 
-                    text={comment.commentText} 
-                    posted={comment.createdAt} 
-                    replies={comment.childComments}/>
+                blogComments.map((comment: RawComment) => (
+                    <Comment 
+                        key={comment.id}
+                        id={comment.id}
+                        username={comment.user?.username}
+                        userId={userId}
+                        commentText={comment.commentText}
+                        createdAt={new Date(comment.createdAt).toLocaleDateString("en-US", {
+                            hour: "numeric",
+                            minute: "2-digit",
+                            year: "2-digit",
+                            month: "numeric",
+                            day: "numeric",
+                        })}
+                        postId={blog.id}
+                        childComments={comment.childComments ?? []}
+                        onReplyPosted={handleReplyPosted}/>
                 ))
             }
         </section>
