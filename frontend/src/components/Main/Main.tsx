@@ -32,9 +32,9 @@ export default function Main() {
     }, [user]);
     
     return (
-        <section>
+        <section style={{ display: "flex", padding: "20px", gap: "40px"}}>
             {user ? (
-                <main>
+                <>
                     <Sidebar userId={user.id} />
                     {newestBlog ? (
                         <Blog blog={newestBlog} userId={user.id} />
@@ -42,7 +42,7 @@ export default function Main() {
                         <p>No posts so far</p>
                     )}
                     <ProfileCard userId={user.id} />
-                </main>
+                </>
             ) : (
                 <p>Welcome to the app!</p>
             )}
