@@ -9,7 +9,7 @@ export default function App() {
   return (
     <>
       <Nav />
-      <main>
+      <main style={{ display: "flex", justifyContent: "center"}}>
         <Outlet />
       </main>
     </>
