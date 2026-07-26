@@ -80,12 +80,20 @@ export const togglePublished = async (postId: number, isPublished: boolean) => {
 }
 
 // Comments
-export const postBlogComment = async (postId: number, commentText: string, userId: number) => {
+export const postBlogComment = async (postId: number, commentText: string, userId: number, parentId?: number) => {
     const comment = await prisma.comment.create({
         data: {
             commentText: commentText,
             userId: userId,
-            blogPostId: postId
+            blogPostId: postId,
+            ...(parentId && { parentId }) // Only gets set if it's a reply
+        },
+        include: {
+            user: {
+                select: {
+                    username: true
+                }
+            }
         }
     })
     return comment;
@@ -94,10 +102,11 @@ export const postBlogComment = async (postId: number, commentText: string, userI
 export const getBlogComments = async (postId: number) => {
     return await prisma.comment.findMany({
         where: {
-            blogPostId: postId
+            blogPostId: postId,
+            parentId: null,
         },
         orderBy: {
-            createdAt: "desc"
+            createdAt: "asc"
         },
         select: {
             id: true, 
@@ -116,6 +125,19 @@ export const getBlogComments = async (postId: number) => {
                     user: {
                         select: {
                             username: true
+                        }
+                    },
+                    childComments: { // Recursive step for child comments
+                        select: {
+                            id: true,
+                            commentText: true,
+                            createdAt: true,
+                            user: {
+                                select: {
+                                    username: true
+                                }
+                            },
+                            childComments: true
                         }
                     }
                 }
