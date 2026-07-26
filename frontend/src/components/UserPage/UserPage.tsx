@@ -26,7 +26,7 @@ export default function UserPage() {
     }, [userId, id]);
 
     return (
-        <main>
+        <section style={{ display: "flex", padding: "20px", gap: "40px"}}>
             <Sidebar userId={Number(userId)} />
             {activeBlog ? (
                 <Blog blog={activeBlog} userId={Number(userId)} />
@@ -34,6 +34,6 @@ export default function UserPage() {
                 <p>User has no posts yet.</p>
             )}
             <ProfileCard userId={Number(userId)} />
-        </main>
+        </section>
     )
 }
