@@ -1,0 +1,33 @@
+@import "../../vars.css";
+
+.mainContainer {
+    border-top: 10px solid transparent;
+    background-color: var(--color-surface);
+    max-height: fit-content;
+    padding: 1rem;
+    border-image: linear-gradient(to right, #e35576 0% 25%, #e8c97a 25% 50%, #63b4d6 50% 75%, #976a32 75% 100%) 1;
+    margin: 1rem;
+    color: var(--color-text);
+    min-width: 500px;
+}
+
+.sectionTitle {
+    display: flex;
+    align-self: center;
+    font-size: 2rem;
+}
+
+.listItem {
+    list-style-type: none;
+    text-decoration: underline;
+    color: var(--color-amber);
+    border: 1px solid transparent;
+    margin-bottom: 1rem;
+    padding: 0.5rem 0rem;
+    font-size: 1.2rem;
+}
+
+.listItem:hover {
+    border: 1px solid var(--color-bg-warm);
+    cursor: pointer;
+}
