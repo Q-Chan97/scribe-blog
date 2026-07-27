@@ -44,7 +44,10 @@ export default function Main() {
                     <ProfileCard userId={user.id} />
                 </>
             ) : (
-                <p>Welcome to the app!</p>
+                <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "20px"}}>
+                    <h3>Welcome to the app!</h3>
+                    <p>Search for a user above! Create an account or sign in to contribute!</p>
+                </div>
             )}
         </section>
     )
