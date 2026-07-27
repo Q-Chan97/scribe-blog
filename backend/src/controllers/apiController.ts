@@ -57,12 +57,12 @@ export const getSinglePost = async(req: Request, res: Response) => {
 export const getNewestPost = async(req: Request, res: Response) => {
     try {
         const { userId } = req.params;
-
         const id = Number(userId);
-
         if (!id) return;
 
-        const post = await queries.newestBlogPost(id);
+        const isOwner = req.user?.id === id;
+
+        const post = await queries.newestBlogPost(id, isOwner);
 
         res.status(201).json({post});
     } catch (err) {
