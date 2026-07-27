@@ -41,9 +41,12 @@ export const deleteBlogPost = async (postId: number) => {
     })
 }
 
-export const newestBlogPost = async (userId: number) => {
+export const newestBlogPost = async (userId: number, isOwner: boolean) => {
     const post = await prisma.blogPost.findFirst({
-        where: { userId},
+        where: { 
+            userId,
+            ...(!isOwner && { isPublished: true }) // Will only show last published post to non-owners
+        },
         orderBy: { createdAt: "desc" },
         include: { blogComments: true},
     })
