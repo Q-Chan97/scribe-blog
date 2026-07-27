@@ -16,6 +16,9 @@ apiRouter.get("/:userId/posts/newest", optionalAuth, api.getNewestPost);
 // Get Single Post
 apiRouter.get("/:userId/posts/:postId", optionalAuth, api.getSinglePost);
 
+// Soft-Delete comment
+apiRouter.patch("/:userId/posts/:postId/comments/:commentId/delete", verifyToken, api.deleteComment);
+
 // Post Comment
 apiRouter.post("/:userId/posts/:postId/comments", verifyToken, api.postComment);
 
