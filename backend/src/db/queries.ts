@@ -112,6 +112,8 @@ export const getBlogComments = async (postId: number) => {
             id: true, 
             createdAt: true, 
             commentText: true, 
+            userId: true,
+            isDeleted: true,
             user: {
                 select: {
                     username: true
@@ -122,6 +124,8 @@ export const getBlogComments = async (postId: number) => {
                     id: true,
                     commentText: true,
                     createdAt: true,
+                    userId: true,
+                    isDeleted: true,
                     user: {
                         select: {
                             username: true
@@ -132,6 +136,8 @@ export const getBlogComments = async (postId: number) => {
                             id: true,
                             commentText: true,
                             createdAt: true,
+                            userId: true,
+                            isDeleted: true,
                             user: {
                                 select: {
                                     username: true
@@ -142,6 +148,27 @@ export const getBlogComments = async (postId: number) => {
                     }
                 }
             }
+        }
+    })
+}
+
+export const getSingleComment = async(commentId: number) => {
+    return prisma.comment.findUnique({
+        where: {
+            id: commentId
+        }
+    })
+}
+
+export const deleteComment = async (commentId: number) => {
+    if (!commentId) return;
+    
+    return prisma.comment.update({
+        where: {
+            id: commentId
+        },
+        data: {
+            isDeleted: true
         }
     })
 }
