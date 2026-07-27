@@ -48,6 +48,7 @@ model Comment {
   parentId          Int?
   parentComment     Comment?        @relation("CommentTree", fields: [parentId], references: [id])     
   childComments     Comment[]       @relation("CommentTree")
+  isDeleted         Boolean         @default(false)
 }
 
 model Follow {
