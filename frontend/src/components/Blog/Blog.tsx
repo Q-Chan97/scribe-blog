@@ -94,9 +94,12 @@ export default function Blog({ blog, userId }: BlogProps) {
                             month: "numeric",
                             day: "numeric",
                         })}
+                        commentUserId={comment.userId}
+                        isDeleted={comment.isDeleted}
                         postId={blog.id}
                         childComments={comment.childComments ?? []}
-                        onReplyPosted={handleReplyPosted}/>
+                        onReplyPosted={handleReplyPosted}
+                        setBlogComments={setBlogComments}/>
                 ))
             }
         </section>
