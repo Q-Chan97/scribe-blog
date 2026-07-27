@@ -1,3 +1,5 @@
+import styles from "./CreatePost.module.css";
+
 import { useRef, useState } from "react";
 import { useAuth } from "../../AuthContext.tsx";
 import { useNavigate } from "react-router";
@@ -17,7 +19,8 @@ export default function CreatePost() {
         const content = editorRef.current.getContent();
 
         if (!title || !content){
-            setError("Title and content are required")
+            setError("Title and content are required");
+            return;
         }
 
         const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/${user.id}/posts/create`, {
@@ -37,14 +40,15 @@ export default function CreatePost() {
     }
 
     return (
-        <div>
-            <div>
+        <div className={styles.mainContainer}>
+            <div className={styles.titleContainer}>
                 <label htmlFor="title">Post Title: </label>
                 <input 
                     type="text"
                     name="title"
                     id="title"
                     value={title}
+                    maxLength={50}
                     onChange={(e) => setTitle(e.target.value)}>
                 </input>
             </div>
@@ -54,6 +58,7 @@ export default function CreatePost() {
                 initialValue=""
                 init={{
                     height: 500,
+                    width: 900,
                     menubar: false,
                     plugins: [
                         "advlist", "autolink", "lists", "link", "image",
@@ -66,8 +71,8 @@ export default function CreatePost() {
                     content_style: "body { font-family: Helvetica, Arial, sans-serif; font-size: 14px }"
                 }}
             />
-            {error && <p>{error}</p>}
-            <button onClick={handleSubmit}>Publish</button>
+            {error && <p className={styles.error}>{error}</p>}
+            <button className={styles.publish} onClick={handleSubmit}>Publish</button>
         </div>
     );
 }

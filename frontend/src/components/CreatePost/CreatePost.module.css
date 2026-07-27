@@ -1,0 +1,40 @@
+@import "../../vars.css";
+
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    align-items: center;
+    color: var(--color-text);
+}
+
+.titleContainer {
+    display: flex;
+    margin: 1.5rem;
+    gap: 15px;
+}
+
+.titleContainer label {
+    font-weight: bold;
+}
+
+.titleContainer input {
+    width: 400px;
+}
+
+.publish {
+    border: none;
+    border-radius: 15px;
+    background-color: var(--color-sage);
+    margin: 2rem;
+    padding: 1rem;
+}
+
+.publish:hover {
+    cursor: pointer;
+}
+
+.error {
+    margin-top: 1rem;
+    color: var(--color-purple);
+}
