@@ -8,6 +8,12 @@
     color: var(--color-text);
 }
 
+.sectionTitle {
+    display: flex;
+    align-self: center;
+    font-size: 2rem;
+}
+
 .titleContainer {
     display: flex;
     margin: 1.5rem;

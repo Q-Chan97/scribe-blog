@@ -41,6 +41,7 @@ export default function CreatePost() {
 
     return (
         <div className={styles.mainContainer}>
+            <h3 className={styles.sectionTitle}>New Blog Post</h3>
             <div className={styles.titleContainer}>
                 <label htmlFor="title">Post Title: </label>
                 <input 
