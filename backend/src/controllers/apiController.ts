@@ -170,3 +170,24 @@ export const postComment = async (req: Request, res: Response) => {
         console.error(err);
     }
 }
+
+export const deleteComment = async (req: Request, res: Response) => {
+    try {
+        const commentId = Number(req.params.commentId);
+        const comment = await queries.getSingleComment(commentId);
+
+        if (!commentId) {
+            res.status(404).json({ message: "Comment not found" })
+        };
+
+        if (comment!.userId !== req.user!.id) {
+            res.status(500).json({ message: "Forbidden" });
+        }
+
+        await queries.deleteComment(commentId);
+
+        res.status(200).json({ message: "Comment deleted" })
+    } catch (err) {
+        console.error(err);
+    }
+}
