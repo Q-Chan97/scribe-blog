@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router";
+
 import Blog from "../Blog/Blog.tsx";
 import Sidebar from "../Sidebar/Sidebar.tsx";
 import ProfileCard from "../ProfileCard/ProfileCard.tsx";
@@ -7,6 +8,7 @@ import ProfileCard from "../ProfileCard/ProfileCard.tsx";
 export default function UserPage() {
     const { userId, id } = useParams();
     const [activeBlog, setActiveBlog] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (!userId) return;
@@ -20,8 +22,21 @@ export default function UserPage() {
                 Authorization: `Bearer ${localStorage.getItem("token")}`
             }
         })
-            .then(res => res.json())
-            .then(data => setActiveBlog(data.post))
+            .then(res => {
+                if (!res.ok) {
+                    navigate("/404");
+                    return;
+                }
+                return res.json();
+            })
+            .then(data => {
+                if (!data) return;
+                if (!data.post) { // User exists but no posts
+                    setActiveBlog(null);
+                } else {
+                    setActiveBlog(data.post);
+                }
+            })
             .catch(err => console.error(err));
     }, [userId, id]);
 
