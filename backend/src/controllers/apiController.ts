@@ -58,13 +58,18 @@ export const getNewestPost = async(req: Request, res: Response) => {
     try {
         const { userId } = req.params;
         const id = Number(userId);
-        if (!id) return;
+        if (!id) {
+            return res.status(404).json({ message: "User not found" });
+        };
+
+        const user = await queries.findUniqueUser(id); 
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
 
         const isOwner = req.user?.id === id;
-
         const post = await queries.newestBlogPost(id, isOwner);
-
-        res.status(201).json({post});
+        res.status(200).json({ post });
     } catch (err) {
         console.error(err);
     }
