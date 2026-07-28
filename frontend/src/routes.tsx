@@ -5,6 +5,7 @@ import Main from "./components/Main/Main.tsx";
 import CreatePost from "./components/CreatePost/CreatePost.tsx";
 import UserPage from "./components/UserPage/UserPage.tsx";
 import Community from "./components/Community/Community.tsx";
+import ErrorPage from "./components/ErrorPage/ErrorPage.tsx";
 
 import ForwardAuthenticated from "./Redirect/forwardAuth.tsx";
 
@@ -12,6 +13,7 @@ const routes = [
     {
         path: "/",
         element: <App />,
+        errorElement: <ErrorPage />,
         children: [
             { index: true, element: <Main /> },
             { path: "community", element: <Community /> },
@@ -22,7 +24,8 @@ const routes = [
                     { path: "posts/newest", element: <UserPage /> },
                     { path: "posts/:id", element: <UserPage />}
                 ]
-            }
+            },
+            { path: "404", element: <ErrorPage />}
         ]
     },
     {
