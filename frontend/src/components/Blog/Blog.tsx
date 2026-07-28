@@ -13,7 +13,7 @@ interface BlogProps {
 
 export default function Blog({ blog, userId }: BlogProps) {
     const { isLoggedIn } = useAuth();
-    const [blogComments, setBlogComments] = useState([]);
+    const [blogComments, setBlogComments] = useState<RawComment[]>([]);
     const [commentText, setCommentText] = useState("");
 
     useEffect(() => {
