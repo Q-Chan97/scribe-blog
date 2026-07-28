@@ -36,7 +36,7 @@ export default function Sidebar({ userId }: SidebarProps) {
     },[userId])
 
     async function handleTogglePublished(post: Post) {
-        const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/${user.id}/posts/${post.id}/publish`, {
+        const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/${user?.id}/posts/${post.id}/publish`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -53,7 +53,7 @@ export default function Sidebar({ userId }: SidebarProps) {
     }
 
     async function handleDeleteBlogPost(post: Post) {
-        const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/${user.id}/posts/${post.id}/delete`, {
+        const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/${user?.id}/posts/${post.id}/delete`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
