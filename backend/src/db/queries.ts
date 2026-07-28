@@ -22,6 +22,13 @@ export const createUser = async ({username, password, email}: reqTypes) => {
     return user;
 }
 
+export const findUniqueUser = async (userId: number) => {
+    const user = await prisma.user.findUnique({
+        where: {id: userId}
+    });
+    return user;
+}
+
 export const createBlogPost = async (title: string, content: string, authorId: number) => {
     const post = await prisma.blogPost.create({
        data: {
