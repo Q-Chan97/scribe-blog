@@ -11,7 +11,7 @@ export default function CreatePost() {
     const [error, setError] = useState<string | null>(null);
     const navigate = useNavigate();
 
-    const editorRef = useRef(null);
+    const editorRef = useRef<any>(null);
 
     const handleSubmit = async () => {
         if (!editorRef.current) return;
@@ -23,7 +23,7 @@ export default function CreatePost() {
             return;
         }
 
-        const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/${user.id}/posts/create`, {
+        const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/${user?.id}/posts/create`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
