@@ -78,7 +78,7 @@ export default function SignUp() {
                     </div>
                     <div className={styles.inputContainer}>
                         <label htmlFor="confirmPassword">Confirm Password: </label>
-                        <input type="password" name="confirmPassword" id="confirmPassword"></input>
+                        <input type={showPassword ? "text" : "password"} id="confirmPassword"></input>
                     </div>
                     {error && <p>{error}</p>}
                     <div className={styles.buttonContainer}>
