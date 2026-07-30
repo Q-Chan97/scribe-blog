@@ -2,6 +2,12 @@
 
 This is a full stack blog-site written in Typescript and built with Node JS and Express, created as part of the Odin Project's Node JS course.
 
+**Live Demo:** https://scribe-blog.pages.dev/
+
+![Screenshot1](/screenshots/Scribe_Screenshot_1.png)
+![Screenshot2](/screenshots/Scribe_Screenshot_2.png)
+![Screenshot3](/screenshots/Scribe_Screenshot_3.png)
+
 ## Features
   - JWT-based authentication with signup, login, and logout
   - Rich text post creation via TinyMCE editor
