@@ -15,6 +15,7 @@ export default function Login() {
     const { setIsLoggedIn, setUser } = useAuth();
     const navigate = useNavigate();
     const [error, setError] = useState<string | null>(null);
+    const [showPassword, setShowPassword] = useState(false);
 
     const handleSubmit = async (e: SubmitEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -41,6 +42,11 @@ export default function Login() {
         }
     };
 
+    function handleShowPassword(e: React.MouseEvent<HTMLButtonElement>) {
+        e.preventDefault();
+        setShowPassword(!showPassword);
+    }
+
     return (
         <main>
             <div className={styles.mainContainer}>
@@ -52,10 +58,11 @@ export default function Login() {
                     </div>
                     <div className={styles.inputContainer}>
                         <label htmlFor="password">Password: </label>
-                        <input type="text" name="password" id="password"></input>
+                        <input type={showPassword ? "text" : "password"} name="password" id="password"></input>
                     </div>
                     {error && <p>{error}</p>}
                     <div className={styles.buttonContainer}>
+                    <button className={styles.toggleBtn} onClick={handleShowPassword}>{showPassword ? "Hide Password" : "Show Password"}</button>
                         <Link to={"/"} className={styles.returnBtn}>
                             <p>Home</p>
                         </Link>
